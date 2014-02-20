@@ -1,0 +1,4 @@
+ShadyBit
+========
+
+ShadyBit Adaptive CryptoCurrency
