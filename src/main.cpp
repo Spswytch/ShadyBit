@@ -833,8 +833,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
     return nSubsidy + nFees;
 }
 
-static const int64 nTargetTimespan = 0.08 * 24 * 60 * 60; // ShadyBits: 2 Hours
-static const int64 nTargetSpacing = 60 // ShadyBits: 2 minute blocks
+static const int64 nTargetTimespan = 0.08 * 24 * 60 * 60; // ShadyBits: 4 Hours
+static const int64 nTargetSpacing = 60; // ShadyBits: 2 minute blocks
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 // Thanks: Balthazar for suggesting the following fix
@@ -1981,7 +1981,7 @@ bool LoadBlockIndex(bool fAllowNew)
         pchMessageStart[1] = 0xc0;
         pchMessageStart[2] = 0xb8;
         pchMessageStart[3] = 0xdb;
-        hashGenesisBlock = uint256("0x");
+        hashGenesisBlock = uint256("0x53e0d0911f003f1504c803f25ad521d8514a812439317e1290b46daaf5705b25");
     }
 
     //
@@ -2016,19 +2016,19 @@ bool LoadBlockIndex(bool fAllowNew)
         block.nVersion = 1;
         block.nTime    = 1392933868; //epochtime
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 0;
+        block.nNonce   = 1195987;
 
         if (fTestNet)
         {
             block.nTime    = 1392933868;
-            block.nNonce   = 0;
+            block.nNonce   = 1195987;
         }
 
         //// debug print
         printf("%s\n", block.GetHash().ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x"));
+        assert(block.hashMerkleRoot == uint256("0xccf71f5a2584f2207c0720f8b6ed45e39ced8a74a8a6543848b25d8fdb3b84b7"));
 
         // If genesis block hash does not match, then generate new genesis hash.
         if (true && block.GetHash() != hashGenesisBlock)
