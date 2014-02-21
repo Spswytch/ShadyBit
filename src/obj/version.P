@@ -1,2 +1,2 @@
-obj/version.o: version.cpp version.h /home/jay/sbit/src/obj/build.h
-version.cpp version.h /home/jay/sbit/src/obj/build.h :
+obj/version.o: version.cpp version.h /home/jay/ShadyBit/src/obj/build.h
+version.cpp version.h /home/jay/ShadyBit/src/obj/build.h :

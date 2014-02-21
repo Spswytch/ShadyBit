@@ -29,7 +29,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x");
+uint256 hashGenesisBlock("0xec46e767e9d7c549d392270b10cf2a898e09b8b861942878ed72b5a3994a3a55");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -2002,25 +2002,25 @@ bool LoadBlockIndex(bool fAllowNew)
     
         
         // Genesis block
-        const char* pszTimestamp = "Yesterday Norway Upset Russia in Mens Ice Hockey destroying thier Hopes of a Medal......HA HA HA HA";
+        const char* pszTimestamp = "Yesterday Finland Upset Russia in Mens Ice Hockey destroying thier Hopes of a Medal......HA HA HA HA";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 0;
+        txNew.vout[0].nValue = 1;
         txNew.vout[0].scriptPubKey = CScript() << 0x0 << OP_CHECKSIG; // a privkey for that 'vanity' pubkey would be interesting ;)
         CBlock block;
         block.vtx.push_back(txNew);
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1392933868; //epochtime
+        block.nTime    = 1392972001; //epochtime
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 1195987;
+        block.nNonce   = 2421134;
 
         if (fTestNet)
         {
-            block.nTime    = 1392933868;
+            block.nTime    = 1392972001;
             block.nNonce   = 1195987;
         }
 
@@ -2028,10 +2028,10 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("%s\n", block.GetHash().ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0xccf71f5a2584f2207c0720f8b6ed45e39ced8a74a8a6543848b25d8fdb3b84b7"));
+        assert(block.hashMerkleRoot == uint256("0x7989f9f2652594364b445733baebb7254cefa704f4d6e2f527fc1a825c35c1b1"));
 
         // If genesis block hash does not match, then generate new genesis hash.
-        if (true && block.GetHash() != hashGenesisBlock)
+        if (false && block.GetHash() != hashGenesisBlock)
         {
             printf("Searching for genesis block...\n");
             // This will figure out a valid hash and Nonce if you're
@@ -2374,7 +2374,7 @@ bool static AlreadyHave(CTxDB& txdb, const CInv& inv)
 // The message start string is designed to be unlikely to occur in normal data.
 // The characters are rarely used upper ascii, not valid as UTF-8, and produce
 // a large 4-byte int at any alignment.
-unsigned char pchMessageStart[4] = { 0xfc, 0xd9, 0xb7, 0xdd };
+unsigned char pchMessageStart[4] = { 0xfc, 0xdd, 0xb7, 0xdd };
 
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
